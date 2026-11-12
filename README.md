@@ -63,6 +63,43 @@ The repository includes the chart exports generated for this analysis:
 | Accidents by weather condition | ![Accidents by weather condition](task2graph3.png) |
 | Accidents by light condition | ![Accidents by light condition](task2graph4.png) |
 
+## 🧠 Extended analytics & dashboard
+
+The project now includes a modular analysis package and an interactive Streamlit application.
+
+![RoadWatch system architecture](docs/architecture.svg)
+
+### Dashboard features
+
+- Interactive filters for year, severity, weather, and road type
+- KPI cards for total, fatal, and severe/fatal records
+- Interactive Plotly charts for severity, weekday, hourly, and monthly patterns
+- Severity heatmaps by weather, road type, and lighting
+- Folium coordinate explorer
+- DBSCAN geographic clustering with adjustable radius and minimum cluster size
+- CSV downloads for filtered records and cluster summaries
+- Dataset quality checks
+
+### Run the dashboard
+
+```bash
+streamlit run app.py
+```
+
+### Generate high-resolution chart assets
+
+```bash
+python generate_report.py
+```
+
+Charts are saved to `assets/generated/` (the generated output folder is intentionally excluded from Git).
+
+### Run automated tests
+
+```bash
+pytest
+```
+
 ## 🧰 Tech stack
 
 - **Python** — analysis
@@ -74,6 +111,8 @@ The repository includes the chart exports generated for this analysis:
 
 ```text
 .
+├── app.py
+├── generate_report.py
 ├── Task2.ipynb
 ├── usa_traffic_accidents_2023_2024_1000.csv
 ├── task2graph1.png
@@ -81,6 +120,15 @@ The repository includes the chart exports generated for this analysis:
 ├── task2graph3.png
 ├── task2graph4.png
 ├── requirements.txt
+├── src/
+│   ├── __init__.py
+│   ├── data_processing.py
+│   ├── analytics.py
+│   └── visualizations.py
+├── tests/
+│   └── test_analysis.py
+├── docs/
+│   └── architecture.svg
 └── README.md
 ```
 
@@ -119,7 +167,13 @@ pip install -r requirements.txt
 jupyter notebook Task2.ipynb
 ```
 
-Run the cells in order. Keep the CSV in the same directory as the notebook.
+To launch the interactive dashboard instead:
+
+```bash
+streamlit run app.py
+```
+
+Run the notebook cells in order. Keep the CSV in the repository root.
 
 ## 🗂️ Dataset fields
 
@@ -137,9 +191,9 @@ Run the cells in order. Keep the CSV in the same directory as the notebook.
 
 ## 🔭 Future improvements
 
-- Add an interactive map to inspect geographic clusters and potential hotspots.
-- Use geospatial clustering (for example, DBSCAN) to identify dense groups of incidents.
-- Add time-of-day, monthly, and seasonal trend analysis.
+- Validate coordinate clusters against authoritative geographic data and documented dataset provenance.
+- Add seasonal trend analysis and additional statistical significance checks.
+- Evaluate predictive models only after sourcing a representative, well-documented dataset.
 - Compare severity against weather, road, surface, and lighting conditions.
 - Add data validation, missing-value checks, and reproducible analysis scripts.
 - Document the dataset source and methodology before drawing real-world conclusions.
