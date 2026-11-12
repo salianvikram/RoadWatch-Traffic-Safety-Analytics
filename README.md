@@ -65,6 +65,8 @@ The repository includes the chart exports generated for this analysis:
 
 ## 🧠 Extended analytics & dashboard
 
+![Dataset insights infographic](docs/analytics_overview.svg)
+
 The project now includes a modular analysis package and an interactive Streamlit application.
 
 ![RoadWatch system architecture](docs/architecture.svg)
